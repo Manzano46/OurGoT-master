@@ -56,7 +56,7 @@
             System.Console.WriteLine("Choose a card else -1 to skip");
             int Selection;
             Selection = int.Parse(Console.ReadLine()!);
-            Play.Selection = Selection;
+           // Play.Selection = Selection;
         }
 
         public virtual void Choose_Position(bool flag, int turn)
@@ -67,9 +67,9 @@
                 else System.Console.WriteLine("Choose a position between the rows 8 and 9");
             }
             else System.Console.WriteLine("Choose a position else -1 to skip");
-            Play.x = int.Parse(Console.ReadLine()!);
+           /* Play.x = int.Parse(Console.ReadLine()!);
             if (Play.x == -1) return;
-            Play.y = int.Parse(Console.ReadLine()!);
+            Play.y = int.Parse(Console.ReadLine()!);*/
         }
 
         public virtual void Choose_Power(Card C, bool[] used)
@@ -80,7 +80,7 @@
                 if (C.Conditions[x].Evaluate() > 0 && used[x] == false)
                     System.Console.WriteLine(x);
             }
-            Play.Selection = int.Parse(Console.ReadLine()!);
+         //   Play.Selection = int.Parse(Console.ReadLine()!);
         }
 
         public static bool Exist(int posx, int posy)

@@ -10,7 +10,7 @@
             this.action = action;
             this.n = n;
         }
-        public override async   Task Run()
+        public override void Run()
         {
             System.Console.WriteLine("Is goin to Run an action {0} times", n);
             Play.MessegeAction = $"Is goin to Run an action {n} times";

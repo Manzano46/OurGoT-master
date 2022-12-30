@@ -10,24 +10,15 @@
             this.A = A;
             this.P = P;
         }
-        public override async Task Run()
+        public override void Run()
         {
             if (Play.CurrentPlayer is VirtualPlayer)
                 B = Play.CurrentPlayer.Choose_Card(A, 1);
             else
-            {
-
-                while ((Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range))
-                {
-                    await Play.Waitting();
-                    B = Play.SelectedCardAction;
-                }
-
-
-            }
+                B = Play.Position;
             Play.MessegeAction = $"{A.Name}  Heal to {B.Name} on {P}";
             //await Task.Delay(1000);
-            if (B.Name == "*")
+            if (B.Name == "*" || (Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range) || B.Name == "**")
             {
                 System.Console.WriteLine("Your spell was misused");
                 return;
@@ -56,7 +47,6 @@
             }
             System.Console.WriteLine("Life: " + B.Life);
             Play.Context.Save(B.Name + ".Life", B.Life);
-            Play.SelectedCardAction = new Card();
         }
     }
 }

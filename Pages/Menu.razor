@@ -4,40 +4,45 @@
 
 <img src = "../Img/got.jpg" class = "Head">
 <div class="Menu">
-<h3>Choose Players</h3>
-<select @bind = "players">
+<h3 class="ChoosePlayer">Choose Players</h3>
+<select class="Select" style="width: 20px;" @bind = "players">
 <option value = "human">Human</option>
 <option value = "virtual">Virtual</option>
 </select>
-
+    <button class="Select" style="width: 50px;" @onclick = "Players">
+        Select
+    </button>
 @if(players=="human")
 {
-    <input @bind-value = "name" placeholder ="Name" @onkeyup="Enter">
+    <input class="Input" @bind-value = "name" placeholder ="Name" @onkeyup="Enter">
 }
 
-<button @onclick = "Players">
-    Select
-</button>
 
-@if(Play.Player1.Name != "")
+
+<a class = "CreateCard" href="/CreateCard">
+            Create Card
+</a> 
+
+
+@if(Play.CurrentPlayer.Name != "")
 {
-    <p>Player @Play.Player1.Name saved </p>
+    <p class="Name">Player @Play.CurrentPlayer.Name saved </p>
 }
-@if(Play.Player2.Name != "")
+@if(Play.NextPlayer.Name != "")
 {
-    <p>Player @Play.Player2.Name saved </p>
+    <p class="Name">Player @Play.NextPlayer.Name saved </p>
 }
-@if(Play.Player1.Name != "" && Play.Player2.Name != "")
+   
+
+@if(Play.CurrentPlayer.Name != "" && Play.NextPlayer.Name != "")
     {
-        <a class = "fcc-btn" href="/Play">
+        <a class = "fcc-btn" href="/Play2">
             Play
         </a>
     }
         
 </div>
-<a class = "fcc-btn Right Down" href="/CreateCard">
-            Create Card
- </a>
+
 @code
 {
     public string players="" ;
@@ -51,19 +56,19 @@
     {
         string [] Playeres = {"Robert_Barathyon","Daenerys","Cersei","Joffrey","Thom","Jon_Snow"};
         
-        if(Play.Player1.Name == "")
+        if(Play.CurrentPlayer.Name == "")
         {
-            if(players=="human") Play.Player1 = new Player(name);
-            else Play.Player1 = new VirtualPlayer(Playeres[Methods.GetRandom(0,Playeres.Length-1)]);
+            if(players=="human") Play.CurrentPlayer = new Player(name);
+            else Play.CurrentPlayer = new VirtualPlayer(Playeres[Methods.GetRandom(0,Playeres.Length-1)]);
         }
         else
         {
-            if(players=="human") Play.Player2 = new Player(name);
+            if(players=="human") Play.NextPlayer = new Player(name);
             else
             {
                 do{
-                Play.Player2 = new VirtualPlayer(Playeres[Methods.GetRandom(0,Playeres.Length-1)]);
-                }while(Play.Player2.Name == Play.Player1.Name);
+                Play.NextPlayer = new VirtualPlayer(Playeres[Methods.GetRandom(0,Playeres.Length-1)]);
+                }while(Play.NextPlayer.Name == Play.CurrentPlayer.Name);
             }
         }
     }

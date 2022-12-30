@@ -197,13 +197,6 @@
                     }
                     
                     Aux = new And(Aux,power);
-                   if(card.Name == "Drogo")
-                    {
-                        Console.WriteLine(value[POS].Value);
-                       // Aux.Evaluate();
-                        Console.WriteLine("HERE");
-
-                    }
                 }
                 pos++;
             }

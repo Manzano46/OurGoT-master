@@ -115,7 +115,7 @@
                     {
                         string name = Tab[i, j].Name;
                         bool flag = false;
-                        foreach (var x in Play.Player1.CampCards)
+                        foreach (var x in Play.CurrentPlayer.CampCards)
                             if (name == x.Name)
                                 flag = true;
                         char Beggining = name[0];

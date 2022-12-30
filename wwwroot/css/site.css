@@ -1,24 +1,84 @@
 .fcc-btn
 {
-    background-color: darkred;
-    border:none;
+    background-color: rgb(139, 0, 0);
+    border:crimson;
     font-size:large;
-    color: white;
-    padding: 15px 32px;
+    color:rgb(255, 255, 255);
+    padding: 15px;
     text-align: center;
     text-decoration:from-font;
     display : inline-block;
-    font-size: 16px;
+    font-size: 20px;
     width: 50px;
     height:20px;
+    border-style: solid;
+    border-radius: 40px;
+}
+.CreateCard
+{
+    position: relative;
+    left: 100px;
+    background-color: darkred;
+    border:crimson;
+    font-size:large;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration:from-font;
+    display : inline-block;
+    font-size: 20px;
+    width: 100px;
+    height:20px;
+    border-style: solid;
+    border-radius: 40px;
+}
+.Select
+{
+    color-scheme: 10px;
+    background-color: #b32121;
+    color: burlywood;
+    border-radius: 5px;
+    position: relative;
+    left: 50px;
+}
+.Input
+{
+    position: relative;
+    top:25px;
+    border-radius: 10px;
+    border-color: black;
+    width: 50px;
 
+}
+.Name
+{
+    background-color: rgba(165, 42, 42, 0.349);
+    width: 165px;
+    height: 58px;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    left: 655px;
 }
 html {
     background-image: url("../Img/inicio.jpg");
     background-repeat:no-repeat;
-    background-size:1650px;
+    background-size:cover;
     background-position:center;
     background-attachment:fixed;
+}
+.Info
+{
+    background-color: rgba(38, 62, 75, 0.253);
+    height: 280px;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 100px;
+    position: relative;
+    left: 1150px;
 }
 .Head {
     animation-duration: 3s;
@@ -26,15 +86,15 @@ html {
     font-size: 100px;
     text-align: center;
     color: red;
-    border-radius:5px;
+    border-radius:100px;
     height:300px;
     width:500px;
-    opacity:0.9;
-    align-content:center;
-    position:relative;
-    left:550px;
+    opacity:0.89;
+    position:relative;  
+    left:500px;
     z-index:1;
 }
+
 .Right
 {
     position:relative;
@@ -43,7 +103,7 @@ html {
 .Down
 {
     position:relative;
-    up:100px;
+    Top:100px;
 }
 .Up
 {
@@ -54,18 +114,29 @@ html {
 }
 .UP {
     position: relative;
-    top: -950px;
+    top: -1300px;
+    left: 690px;
+    color-interpolation-filters: linearRGB;
+    column-rule: cadetblue;
+    color: rgb(247, 0, 0);
+    flood-color: blue;
+    background-color: rgba(127, 255, 212, 0);
+    width: 20px;
+    border-radius: 100px;
+    border-color: blueviolet;
 }
 .btn
 {
-    left:400px;
+    left:1270px;
     height:50px;
-    width:70px;
+    width:85px;
     background-image:url("../Img/button.jpg");
     background-position:center;
-    background-size:80px;
+    background-size:90px;
     border-radius:60px;
     color: floralwhite;
+    position:-webkit-sticky;
+    margin-top: 200px;
 }
 @keyframes slidein
 {
@@ -82,10 +153,13 @@ html {
     }
 }
 .Picture {
-    width:95px;
-    height:120px;
-    padding:3px;
+    width:90px;
+    height:110px;
+    padding: 6px;
+    align-items: center;
     border-radius:10px;
+    position: relative;
+    right: 1px;
 }
 .Right-Up
 {
@@ -96,7 +170,7 @@ html {
 .Menu
 {
     position : relative;
-    top : 100px;
+    top : 40px;
     text-align : center;
 }
 .Card
@@ -106,7 +180,7 @@ html {
     background-position:center;
     font-size:xx-small;
     width:100px;
-    height:200px;
+    height:210px;
     border-style:double;
     border-color:darkgoldenrod;
     border-radius:10px;
@@ -114,7 +188,7 @@ html {
     opacity:0.9;
 }
 .Bigger {
-    transform:scale(1.9);
+    transform:scale(2);
 }
 .Card-Show:hover
 {
@@ -123,30 +197,30 @@ html {
 }
 .Showing {
     width: 200px;
-    height: 400px;
+    height: 420px;
     position: relative;
-    left: 1300px;
-    top: -700px;
+    left: 950px;
+    top: -950px;
+    right: -300px;
 }
 .Hand
 {
     position:relative;
-    left:460px;
-    top:330px;
+    left:650px;
+    top:210px;
     display:flex;
     flex-flow:column wrap;
     align-content:center;
-    justify-content:center;
     width:600px;
-    height:200px;
+    height:210px;
 }
 .Tab_Picture {
-    width:518px;
-    height:518px;
+    width:580px;
+    height:580px;
     background-image: url("../Img/map1.jpg");
     background-position:center;
     background-repeat:no-repeat;
-    background-size:517px 517px;
+    background-size:580px 580px;
     opacity:0.8;
     border-radius: 10px;
     border-style:dotted;
@@ -154,8 +228,8 @@ html {
 }
 .Tab {
     position: relative;
-    left: 500px;
-    top: -450px;
+    left: 5px;
+    bottom: 460px;
     border-radius: 5px;
     border-style: solid;
     border-color: ghostwhite;
@@ -163,18 +237,27 @@ html {
     flex-flow: column wrap;
     align-content: center;
     justify-content: center;
-    width: 519px;
-    height: 519px;
+    width: 580px;
+    height: 580px;
 }
 .Picture_Grid {
-    width: 45px;
-    height: 45px;
+    align-items: center;
+    width: 50px;
+    height: 50px;
     border-radius:5px;
 }
 .Powers
 {
+    background-color:rgba(11, 31, 122, 0.329);
+    width: 90px;
+    height: 71px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     position:relative;
-    top:100px;
+    border-radius: 10px;
+    top:-300px;
+    right: 200px;
 }
 .Ally
 {
@@ -185,8 +268,8 @@ html {
     background-color:rgb(255, 0, 0, 0.70);
 }
 .Grid {
-    width: 45px;
-    height: 45px;
+    width: 51px;
+    height: 51px;
     border-color:#86620899;
     border-style:ridge;
 }

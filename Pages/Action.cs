@@ -7,6 +7,6 @@
             Run();
             return 1;
         }
-        public abstract Task Run();
+        public abstract void Run();
     }
 }

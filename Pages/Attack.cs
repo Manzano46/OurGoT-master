@@ -9,7 +9,7 @@
         {
             this.A = A;
         }
-        public override async Task Run()
+        public override void Run()
         {
             if (Methods.OnRange(A.Posx, A.Posy, Play.NextPlayer.CampCards, A.Range).Count() != 0)
             {
@@ -17,19 +17,13 @@
                 if (Play.CurrentPlayer is VirtualPlayer)
                     B = Play.CurrentPlayer.Choose_Card(A, 2);
                 else
-                {
-                    while ((Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range))
-                    {
-                        await Play.Waitting();
-                        B = Play.SelectedCardAction;
-                    }
-                    
-                }
+                    B = Play.Position;
+                
                 Play.MessegeAction = $"{A.Name}  Attack to {B.Name}";
-                //await Task.Delay(1000);
-                if (B.Name == "*")
+                
+                if (B.Name == "*" || (Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range) || B.Name == "**")
                 {
-
+                    Play.MessegeAction = "Your spell was misused";
                     System.Console.WriteLine("Your spell was misused");
                     return;
                 }
@@ -44,7 +38,6 @@
                 {
                     System.Console.WriteLine("Defense of {0} is bigger than attack of {1}", B.Name, A.Name);
                     Play.MessegeAction = $"{B.Name} Defense's is bigger than attack of {A.Name}";
-                    //await Task.Delay(1000);
                 }
                 B.Life = Math.Max(B.Life, 0);
                 if (B.Life <= 0)
@@ -59,7 +52,6 @@
                     Play.Tab[B.Posx, B.Posy].Posy = B.Posy;
                     Play.Context.Save(Play.NextPlayer.Name + ".CampCards", Play.NextPlayer.CampCards.Count());
                     Play.MessegeAction = $"{B.Name} has died";
-                    //await Task.Delay(1000);
                 }
 
                 Play.Context.Save(B.Name + ".Life", B.Life);
@@ -70,8 +62,6 @@
                 //await Task.Delay(1000);
                 System.Console.WriteLine("You cannot Attack anymore, because there is not enemies around");
             }
-            Play.SelectedCardAction = new Card();
-                return;
         }
     }
 }

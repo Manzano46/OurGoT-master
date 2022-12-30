@@ -11,7 +11,7 @@
             this.time = time;
         }
 
-        public override async Task Run()
+        public override void Run()
         {
             System.Console.WriteLine("A time action has been actived, it will be reactived {0} times", time);
             Play.MessegeAction = $"Is goin to Run an action {time} times";
