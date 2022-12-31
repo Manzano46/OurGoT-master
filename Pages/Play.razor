@@ -200,6 +200,10 @@ else
         else if(Phase == "Draw")
         {
             Draw();
+            if(Winner != "")
+            {
+                return;
+            }
             Phase = "Invocation";
             if(CurrentPlayer is VirtualPlayer)
             Change();
@@ -229,7 +233,7 @@ else
                         CurrentPlayer.Choose_Position(true, turn);
                     }
 
-                    CurrentPlayer.Money -= CurrentPlayer.Hand[Selection].Cost;
+                    CurrentPlayer.Money -= CurrentPlayer.Hand[Selection].Cost.Evaluate();
                     Context.Save(CurrentPlayer.Name + ".Money", CurrentPlayer.Money);
                     Tab[x, y] = CurrentPlayer.Hand[Selection];
                     CurrentPlayer.CampCards.Add(CurrentPlayer.Hand[Selection]);
@@ -260,11 +264,11 @@ else
                 for (int i = 0; i < CurrentPlayer.CampCards.Count(); i++)
                 {
                     Aux = CurrentPlayer.CampCards[i];
-                    CurrentPlayer.Money -= Aux.Cost / 10;
+                    CurrentPlayer.Money -= Aux.Cost.Evaluate() / 10;
                     Context.Save(CurrentPlayer.Name + ".Money", CurrentPlayer.Money);
                     do
                     {
-                        if (Aux.Range == 0)
+                        if (Aux.Range.Evaluate() == 0)
                         {
                             x = -1;
                             break;
@@ -278,7 +282,7 @@ else
                         }
                     }
                     while (!Methods.Validate_Position(x, y, Tab, turn, false)
-                    || Methods.Distance(x, y, Aux.Posx, Aux.Posy) > Aux.Range);
+                    || Methods.Distance(x, y, Aux.Posx, Aux.Posy) > Aux.Range.Evaluate());
 
                     if (x != -1)
                     {
@@ -376,7 +380,7 @@ else
                 Tab[Position.Posx, Position.Posy].Posx = Position.Posx;
                 Tab[Position.Posx, Position.Posy].Posy = Position.Posy;
                 CurrentPlayer.CampCards.Add(SelectedCardHand);
-                CurrentPlayer.Money -= SelectedCardHand.Cost;
+                CurrentPlayer.Money -= SelectedCardHand.Cost.Evaluate();
                 Context.Save(CurrentPlayer.Name + ".Money", CurrentPlayer.Money);
                 Context.Save(CurrentPlayer.Name + ".Hand", CurrentPlayer.Hand.Count());
                 Context.Save(CurrentPlayer.Name + ".CampCards", CurrentPlayer.CampCards.Count());
@@ -393,7 +397,7 @@ else
 
     public void Move()
     {
-        if (Methods.Distance(Position.Posx,Position.Posy,SelectedCardCamp.Posx,SelectedCardCamp.Posy) > SelectedCardCamp.Range)
+        if (Methods.Distance(Position.Posx,Position.Posy,SelectedCardCamp.Posx,SelectedCardCamp.Posy) > SelectedCardCamp.Range.Evaluate())
             return;
         if (Position.Name != "*")
             return;
@@ -404,7 +408,7 @@ else
         int newy = Position.Posy;
         int posx = SelectedCardCamp.Posx;
         int posy = SelectedCardCamp.Posy;
-        CurrentPlayer.Money -= SelectedCardCamp.Cost/10;
+        CurrentPlayer.Money -= SelectedCardCamp.Cost.Evaluate()/10;
         Context.Save(SelectedCardCamp.Name + ".Posx", newx);
         Context.Save(SelectedCardCamp.Name + ".Posy", newy);
         Context.Save(CurrentPlayer.Name + ".Money", CurrentPlayer.Money);
@@ -467,6 +471,7 @@ else
             CurrentPlayer.Draw(deck, Methods.GetRandom(0, deck.Count() - 1));
             NextPlayer.Draw(deck, Methods.GetRandom(0, deck.Count() - 1));
         }
+        turn = 1;
         Position.Name = "**";
         Phase = "Draw";
         if(CurrentPlayer is VirtualPlayer)

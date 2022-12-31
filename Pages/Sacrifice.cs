@@ -33,7 +33,7 @@
                 Play.OnSacrifice = false;
             }
             
-            card.Life = card.TotalLife;
+            card.Life = new Constant(card.TotalLife);
             Play.CurrentPlayer.Hand.Add(card);
             Play.Context.Save(Play.CurrentPlayer.Name + ".Hand", Play.CurrentPlayer.Hand.Count());
             System.Console.WriteLine("Now you have the card choosed");

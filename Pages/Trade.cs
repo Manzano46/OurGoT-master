@@ -3,8 +3,8 @@
     public class Trade : Action
     {
         Player Player = Play.CurrentPlayer;
-        int P;
-        public Trade(int P)
+        Expression P;
+        public Trade(Expression P)
         {
             this.P = P;
         }
@@ -12,7 +12,7 @@
         {
             if (Play.CurrentPlayer is VirtualPlayer)
             {
-                if (P < 0) Player = Play.CurrentPlayer.Choose_Player(2);
+                if (P.Evaluate() < 0) Player = Play.CurrentPlayer.Choose_Player(2);
                             else Player = Play.CurrentPlayer.Choose_Player(1);
                           
             }
@@ -25,11 +25,11 @@
                     Player = Play.NextPlayer; 
                 Play.OnTrade = false;
             }
-            Player.Money += P;
-            System.Console.WriteLine("The Money of {0} has been modified on {1}", Player.Name, P);
+            Player.Money += P.Evaluate();
+            System.Console.WriteLine("The Money of {0} has been modified on {1}", Player.Name, P.Evaluate());
             System.Console.WriteLine("Now is {0}", Player.Money);
             Play.Context.Save(Player.Name + ".Money", Player.Money);
-            Play.MessegeAction = $"{Player.Name} has been modified on {P}";
+            Play.MessegeAction = $"{Player.Name} has been modified on {P.Evaluate()}";
         }
     }
 }

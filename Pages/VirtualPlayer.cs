@@ -16,9 +16,9 @@
             int Attack = 0;
             for (int i = 0; i < Play.Available.Count(); i++)
             {
-                if (Attack <= Play.CurrentPlayer.Hand[Play.Available[i]].Attack)
+                if (Attack <= Play.CurrentPlayer.Hand[Play.Available[i]].Attack.Evaluate())
                 {
-                    Attack = Play.CurrentPlayer.Hand[Play.Available[i]].Attack;
+                    Attack = Play.CurrentPlayer.Hand[Play.Available[i]].Attack.Evaluate();
                     index = Play.Available[i];
                 }
             }
@@ -42,7 +42,7 @@
             }
             else
             {
-                int al = Play.Aux.Range;
+                int al = Play.Aux.Range.Evaluate();
                 int r = Methods.GetRandom(0, al);
                 al -= r;
                 int op1 = Methods.GetRandom(0, 2);
@@ -68,13 +68,13 @@
             int Life = 1000000;
             int index = 0;
             List<Card> Nearly = new List<Card>();
-            if (type == 1) Nearly = Methods.OnRange(A.Posx, A.Posy, Play.CurrentPlayer.CampCards, A.Range);
-            else Nearly = Methods.OnRange(A.Posx, A.Posy, Play.NextPlayer.CampCards, A.Range);
+            if (type == 1) Nearly = Methods.OnRange(A.Posx, A.Posy, Play.CurrentPlayer.CampCards, A.Range.Evaluate());
+            else Nearly = Methods.OnRange(A.Posx, A.Posy, Play.NextPlayer.CampCards, A.Range.Evaluate());
             for (int i = 0; i < Nearly.Count(); i++)
             {
-                if (Life > Nearly[i].Life)
+                if (Life > Nearly[i].Life.Evaluate())
                 {
-                    Life = Nearly[i].Life;
+                    Life = Nearly[i].Life.Evaluate();
                     index = i;
                 }
             }
@@ -105,10 +105,10 @@
             int Attack = 0;
             for (int i = 0; i < list.Count(); i++)
             {
-                if (list[i].Attack > Attack)
+                if (list[i].Attack.Evaluate() > Attack)
                 {
                     ind = i;
-                    Attack = list[i].Attack;
+                    Attack = list[i].Attack.Evaluate();
                 }
             }
             return list[ind];

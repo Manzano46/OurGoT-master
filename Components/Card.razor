@@ -1,9 +1,9 @@
 ﻿<div class ="Card @CardModel.Style @Card_Show @STYLE"  @onmouseover="Show" @onclick="Select">
     <img src=@CardModel.card.Picture class = "Picture" >
     <div style="color:white">
-    <b> @CardModel.card.Name &nbsp; Life:@CardModel.card.Life <br/></b>
-    <b>Attack: @CardModel.card.Attack &nbsp; Defense: @CardModel.card.Defense <br></b>
-    <b>Range: @CardModel.card.Range  &nbsp; Cost: @CardModel.card.Cost<br></b>
+    <b> @CardModel.card.Name &nbsp; Life:@CardModel.card.Life.Evaluate() <br/></b>
+    <b>Attack: @CardModel.card.Attack.Evaluate() &nbsp; Defense: @CardModel.card.Defense.Evaluate() <br></b>
+    <b>Range: @CardModel.card.Range.Evaluate()  &nbsp; Cost: @CardModel.card.Cost.Evaluate()<br></b>
     <b>@CardModel.card.Description </b>
     </div>
 </div>

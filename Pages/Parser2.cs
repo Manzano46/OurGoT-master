@@ -146,27 +146,27 @@
                             {
                                 case "Heal":
                                     {
-                                        power = new Heal(card, Calculate(Balanced).Evaluate());
+                                        power = new Heal(card, Calculate(Balanced));
                                     }
                                     break;
                                 case "UpAttack":
                                     {
-                                        power = new UpAttack(card, Calculate(Balanced).Evaluate());
+                                        power = new UpAttack(card, Calculate(Balanced));
                                     }
                                     break;
                                 case "UpRange":
                                     {
-                                        power = new UpRange(card, Calculate(Balanced).Evaluate());
+                                        power = new UpRange(card, Calculate(Balanced));
                                     }
                                     break;
                                 case "UpDefense":
                                     {
-                                        power = new UpDefense(card, Calculate(Balanced).Evaluate());
+                                        power = new UpDefense(card, Calculate(Balanced));
                                     }
                                     break;
                                 case "Trade":
                                     {
-                                        power = new Trade(Calculate(Balanced).Evaluate());
+                                        power = new Trade(Calculate(Balanced));
                                     }
                                     break;
                             }
@@ -190,9 +190,9 @@
                             List<Expression> aux = CutPowers(First);
                             //System.Console.WriteLine(aux.Count());
                             if (value[POS].Value == "During")
-                                power = new TimeAction(aux[0], Calculate(Second).Evaluate());
+                                power = new TimeAction(aux[0], Calculate(Second));
                             else
-                                power = new Repetition(aux[0], Calculate(Second).Evaluate());
+                                power = new Repetition(aux[0], Calculate(Second));
                         }
                     }
                     
@@ -250,32 +250,32 @@
                     if (x[0].Type == "FieldE")
                     {
 
-                        int result = Calculate(value).Evaluate();
+                        Expression result = Calculate(value);
                         if (Field == "Life")
                         {
-                            card.TotalLife = result;
+                            card.TotalLife = result.Evaluate();
                             card.Life = result;
-                            Play.Context.Save(card.Name + ".Life", card.Life);
+                            Play.Context.Save(card.Name + ".Life", card.Life.Evaluate());
                         }
                         else if (Field == "Attack")
                         {
                             card.Attack = result;
-                            Play.Context.Save(card.Name + ".Attack", card.Attack);
+                            Play.Context.Save(card.Name + ".Attack", card.Attack.Evaluate());
                         }
                         else if (Field == "Defense")
                         {
                             card.Defense = result;
-                            Play.Context.Save(card.Name + ".Defense", card.Defense);
+                            Play.Context.Save(card.Name + ".Defense", card.Defense.Evaluate());
                         }
                         else if (Field == "Cost")
                         {
                             card.Cost = result;
-                            Play.Context.Save(card.Name + ".Cost", card.Cost);
+                            Play.Context.Save(card.Name + ".Cost", card.Cost.Evaluate());
                         }
                         else
                         {
                             card.Range = result;
-                            Play.Context.Save(card.Name + ".Range", card.Range);
+                            Play.Context.Save(card.Name + ".Range", card.Range.Evaluate());
                         }
                         Play.Context.Save(card.Name + ".Posx", -1);
                         Play.Context.Save(card.Name + ".Posy", -1);

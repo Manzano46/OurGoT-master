@@ -3,9 +3,9 @@
     public class UpAttack : Action
     {
         protected Card A;
-        protected int P;
+        protected Expression P;
         protected Card B = new Card();
-        public UpAttack(Card A, int P)
+        public UpAttack(Card A, Expression P)
         {
             this.A = A;
             this.P = P;
@@ -18,17 +18,17 @@
             {
                 B = Play.Position;
             }
-            Play.MessegeAction = $"{A.Name}  modified the Attack of {B.Name} on {P}";
+            Play.MessegeAction = $"{A.Name}  modified the Attack of {B.Name} on {P.Evaluate()}";
             //await Task.Delay(1000);
-            if (B.Name == "*"  || (Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range) || B.Name == "**") 
+            if (B.Name == "*"  || (Methods.Distance(A.Posx, A.Posy, B.Posx, B.Posy) > A.Range.Evaluate()) || B.Name == "**") 
             {
                 System.Console.WriteLine("Your spell was misused");
                 return;
             }
-            B.Attack += P;
+            B.Attack = new Sum(B.Attack,P);
             System.Console.WriteLine("{2} has modified the attack of {0} on {1}", B.Name, P, A.Name);
-            System.Console.WriteLine("Now the attack of {0} is {1}", B.Name, B.Attack);
-            Play.Context.Save(B.Name + ".Attack", B.Attack);
+            System.Console.WriteLine("Now the attack of {0} is {1}", B.Name, B.Attack.Evaluate());
+            Play.Context.Save(B.Name + ".Attack", B.Attack.Evaluate());
         }
     }
 }

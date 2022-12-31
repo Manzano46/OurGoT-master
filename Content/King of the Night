@@ -1,0 +1,10 @@
+Name = King of the Night
+Life = 500
+Defense = MyCamp * 20
+Attack = YourCamp * 15
+Cost = 200
+Range = 6 - MyHand
+Description = 1- Attack 2-Sacrifices himself to revive a card
+Conditions = MyMoney > 200 | 1 | 1 |
+Powers = ToAttack | Sacrifice |
+Picture = ../Img/reyDeLaNoche.jpg

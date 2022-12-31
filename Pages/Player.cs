@@ -103,7 +103,7 @@
                 System.Console.WriteLine("Choose a Card");
                 PX = int.Parse(Console.ReadLine()!);
                 PY = int.Parse(Console.ReadLine()!);
-            } while (Methods.Distance(PX, PY, A.Posx, A.Posy) > A.Range || !Exist(PX, PY));
+            } while (Methods.Distance(PX, PY, A.Posx, A.Posy) > A.Range.Evaluate() || !Exist(PX, PY));
             Return = Play.Tab[PX, PY];
             return Return;
         }

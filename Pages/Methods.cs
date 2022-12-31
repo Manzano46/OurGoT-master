@@ -20,17 +20,6 @@
             return true;
         }
 
-        public static bool Continue(Player A)
-        {
-            if (A.Money > 0)
-                return true;
-            if (A != Play.CurrentPlayer)
-                Play.Winner = Play.CurrentPlayer.Name;
-            else
-                Play.Winner = Play.NextPlayer.Name;
-            return false;
-        }
-
         public static List<Card> OnRange(int x, int y, List<Card> list, int ratio)
         {
             List<Card> Cards = new List<Card>();
@@ -42,21 +31,7 @@
             }
             return Cards;
         }
-        /*
-        public static void AccionDeRango(int x,int y,List<Card>list,int ratio, Action accion)
-        {
-            List<Card> enZona = new List<Card>();
-
-            enZona = OnRange(x,y,list,ratio);
-            {
-                foreach(var A in enZona)
-                {
-                    accion.Run();
-                }
-            }
-        }*/
-
-
+       
         public static void DoTimeActions()
         {
             foreach (var action in Play.TimeActions)
@@ -72,17 +47,6 @@
         public static int Distance(int x, int y, int newx, int newy)
         {
             return Math.Abs(newx - x) + Math.Abs(newy - y);
-        }
-
-        public static Card Closet(int x, int y, List<Card> list)
-        {
-            List<Card> Exist = new List<Card>();
-            for (int i = 0; i <= 18; i++)
-            {
-                Exist = OnRange(x, y, list, i);
-                if (Exist.Count() != 0) return Exist[0];
-            }
-            return new Card();
         }
 
         public static int GetRandom(int star, int end)
@@ -138,9 +102,9 @@
             System.Console.WriteLine("Game is over");
             int p1 = Play.CurrentPlayer.Money, p2 = Play.NextPlayer.Money;
             foreach (var x in Play.CurrentPlayer.CampCards)
-                p1 += x.Cost;
+                p1 += x.Cost.Evaluate();
             foreach (var x in Play.NextPlayer.CampCards)
-                p2 += x.Cost;
+                p2 += x.Cost.Evaluate();
 
             if (p1 > p2)
             { System.Console.WriteLine("Won " + Play.CurrentPlayer.Name); Play.Winner = Play.CurrentPlayer.Name; }

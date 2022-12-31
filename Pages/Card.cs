@@ -3,14 +3,14 @@
     public class Card
     {
         public string Name;
-        public int Life;
+        public Expression Life;
         public int TotalLife;
-        public int Cost;
-        public int Defense;
-        public int Attack;
+        public Expression Cost;
+        public Expression Defense;
+        public Expression Attack;
         public string Description;
         public string Picture;
-        public int Range;
+        public Expression Range;
         public int Posx;
         public int Posy;
         public List<Expression> Powers = new List<Expression>();
@@ -21,6 +21,8 @@
         {
             Name = Description = Picture = "*";
             Posx = Posy = -1;
+            Life = Cost = Defense = Attack = Range = new Constant(0);
+            TotalLife = 0;
 
             //Life = TotalLife = Cost = Defense = Attack =Range = Posx = Posy = 0;
 
@@ -30,24 +32,6 @@
             Conditions.Add(new Constant(0));
             Used.Add(false);
             Picture = "../Img/Empty.jpg";
-        }
-
-        public Card(string n, int v, int cos, int def, int a, string d, string f, int al, List<Expression> p, List<Expression> c)
-        {
-            Name = n;
-            Life = TotalLife = v;
-            Cost = cos;
-            Defense = def;
-            Attack = a;
-            Description = d;
-            Picture = f;
-            Range = al;
-            Powers = p;
-            Conditions = c;
-            Posx = Posy = -1;
-            Used = new List<bool>();
-            for (int i = 0; i < p.Count; i++)
-                Used.Add(false);
         }
 
         public void ReadCard()
